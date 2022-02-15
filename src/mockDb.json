@@ -1,0 +1,9 @@
+{
+   "products": [
+      {
+         "title": "Robot Vacuum Cleaner",
+         "picture": "static/pictures/585b160a-007a-4430-b4a1-d87069ae51c9.webp",
+         "price": "1000"
+      }
+   ]
+}
