@@ -36,7 +36,8 @@
     "jsxSingleQuote": false,
     "semi": true,
     "singleQuote": true,
-    "trailingComma": "none"
+    "trailingComma": "none",
+    "printWidth": 96
   },
   "eslintConfig": {
     "extends": "react-app"

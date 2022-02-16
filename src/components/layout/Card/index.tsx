@@ -1,18 +1,13 @@
-import { FavouriteIcon } from '../../../icons/favouriteIcon';
+import { ReactNode } from 'react';
 
-interface CatalogCardProps {
-    picture: string;
+interface Props {
     title: string;
+    picture: string;
     price: number;
-    onClick: () => void;
+    extra?: ReactNode;
 }
 
-export function CatalogCard({
-    picture,
-    title,
-    price,
-    onClick
-}: CatalogCardProps) {
+export const CardComponent = ({ title, picture, price, extra }: Props) => {
     return (
         <div className="card h-100">
             <img
@@ -27,15 +22,8 @@ export function CatalogCard({
                 </div>
             </div>
             <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                <div className="d-flex text-center justify-content-between gap-2">
-                    <div
-                        onClick={onClick}
-                        className="btn btn-outline-danger w-100"
-                    >
-                        <FavouriteIcon />
-                    </div>
-                </div>
+                <div className="d-flex text-center justify-content-between gap-2">{extra}</div>
             </div>
         </div>
     );
-}
+};

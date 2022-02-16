@@ -19,7 +19,10 @@ import {
     selectProducts,
     selectStatus
 } from '../../../../../features/catalog/reducer/selectors';
-import { CatalogCard } from '../card';
+import { CardComponent } from '../../../../layout/Card';
+import { CartIcon } from '../../../../icons/cartIcon';
+import { CompareIcon } from '../../../../icons/compareIcon';
+import { FavouriteIcon } from '../../../../icons/favouriteIcon';
 
 export function Catalog() {
     const dispatch = useAppDispatch();
@@ -66,7 +69,7 @@ export function Catalog() {
         surface: string;
     }
 
-    function filter({ color, brand, surface }: FilterProps) {
+    const filterByProperties = ({ color, brand, surface }: FilterProps) => {
         if (filterBrand !== '')
             if (filterBrand !== brand)
                 return false;
@@ -80,37 +83,58 @@ export function Catalog() {
                 return false;
 
         return true;
-    }
+    };
 
     return status === 'loading' ? (
         <div className="d-flex align-items-center">
             <strong className="flex-grow-1">Loading...</strong>
-            <div
-                className="spinner-border ml-auto"
-                role="status"
-                aria-hidden="true"
-            ></div>
+            <div className="spinner-border ml-auto" role="status" aria-hidden="true"></div>
         </div>
     ) : (
         <div className="row gx-3 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            {products.map(
-                (product, index) =>
-                    filter({ ...product }) && (
-                        <div className="col mb-5" key={index}>
-                            <CatalogCard
-                                title={product.name}
-                                picture={product.picture}
-                                price={product.price}
-                                inCart={cart.includes(product.id)}
-                                inFavourites={favourites.includes(product.id)}
-                                inCompares={compares.includes(product.id)}
-                                onCartClick={() => handleClickCart(product.id)}
-                                onFavouriteClick={() => handleClickFavourite(product.id)}
-                                onCompareClick={() => handleClickCompare(product.id)}
-                            />
-                        </div>
-                    )
-            )}
+            {products
+                .filter((element) => filterByProperties({ ...element }))
+                .map((product, index) => (
+                    <div className="col mb-5" key={index}>
+                        <CardComponent
+                            title={product.name}
+                            picture={product.picture}
+                            price={product.price}
+                            extra={[
+                                <div
+                                    onClick={() => handleClickCart(product.id)}
+                                    className={`btn ${
+                                        cart.includes(product.id)
+                                            ? 'btn-dark'
+                                            : 'btn-outline-dark'
+                                    } w-100`}
+                                >
+                                    <CartIcon />
+                                </div>,
+                                <div
+                                    onClick={() => handleClickFavourite(product.id)}
+                                    className={`btn ${
+                                        favourites.includes(product.id)
+                                            ? 'btn-dark'
+                                            : 'btn-outline-dark'
+                                    } w-100`}
+                                >
+                                    <FavouriteIcon />
+                                </div>,
+                                <div
+                                    onClick={() => handleClickCompare(product.id)}
+                                    className={`btn ${
+                                        compares.includes(product.id)
+                                            ? 'btn-dark'
+                                            : 'btn-outline-dark'
+                                    } w-100`}
+                                >
+                                    <CompareIcon />
+                                </div>
+                            ]}
+                        />
+                    </div>
+                ))}
         </div>
     );
 }

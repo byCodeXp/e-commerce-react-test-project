@@ -1,5 +1,5 @@
 import { Header } from '../../layout/Header';
-import { Catalog } from './catalog';
+import { Catalog } from './components/catalog';
 
 export function CartView() {
     return (

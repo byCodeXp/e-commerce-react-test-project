@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { CompareIcon } from '../../icons/compareIcon';
 import { Header } from '../../layout/Header';
 
-export function CompareView() {
+export const CompareView = () => {
     const dispatch = useAppDispatch();
 
     const compares = useAppSelector(selectComparesProducts);
@@ -15,11 +15,11 @@ export function CompareView() {
     const [status, setStatus] = useState<'idle' | 'loading'>('idle');
     const [products, setProducts] = useState<Array<Product>>([]);
 
-    function handleClick(id: string) {
+    const handleClick = (id: string) => {
         if (compares.includes(id)) {
             dispatch(removeProductFromComparesAction(id));
         }
-    }
+    };
 
     useEffect(() => {
         setStatus('loading');
@@ -28,12 +28,6 @@ export function CompareView() {
             setStatus('idle');
         });
     }, []);
-
-    function filter(id: string) {
-        if (compares.includes(id)) return true;
-
-        return false;
-    }
 
     return (
         <div>
@@ -49,50 +43,45 @@ export function CompareView() {
                                 aria-hidden="true"
                             ></div>
                         </div>
+                    ) : compares.length ? (
+                        <table className="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Color</th>
+                                    <th>Surface</th>
+                                    <th>Brand</th>
+                                    <th>Price</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {products
+                                    .filter((element) => compares.includes(element.id))
+                                    .map((product, index) => (
+                                        <tr key={index}>
+                                            <td>{product.name}</td>
+                                            <td>{product.color}</td>
+                                            <td>{product.surface}</td>
+                                            <td>{product.brand}</td>
+                                            <td>${product.price}</td>
+                                            <td>
+                                                <div
+                                                    onClick={() => handleClick(product.id)}
+                                                    className="btn btn-outline-danger"
+                                                >
+                                                    <CompareIcon />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                            </tbody>
+                        </table>
                     ) : (
-                        compares.length ? (
-                            <table className="custom-table">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Color</th>
-                                        <th>Surface</th>
-                                        <th>Brand</th>
-                                        <th>Price</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {products.map(
-                                        (product, index) =>
-                                            filter(product.id) && (
-                                                <tr key={index}>
-                                                    <td>{product.name}</td>
-                                                    <td>{product.color}</td>
-                                                    <td>{product.surface}</td>
-                                                    <td>{product.brand}</td>
-                                                    <td>${product.price}</td>
-                                                    <td>
-                                                        <div
-                                                            onClick={() =>
-                                                                handleClick(
-                                                                    product.id
-                                                                )
-                                                            }
-                                                            className="btn btn-outline-danger"
-                                                        >
-                                                            <CompareIcon />
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            )
-                                    )}
-                                </tbody>
-                            </table>
-                        ) : ''
+                        ''
                     )}
                 </div>
             </section>
         </div>
     );
-}
+};
