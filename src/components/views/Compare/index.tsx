@@ -3,6 +3,7 @@ import { useAppSelector } from '../../../store/hooks';
 import { CompareIcon } from '../../icons/compareIcon';
 import { Header } from '../../layout/Header';
 import { customerActionsInvoker } from '../../../features/customer/reducer/actionsInvoker';
+import { Loader } from '../../layout/Loader';
 
 export const CompareView = () => {
     const compares = useAppSelector((state) => state.customer.compares);
@@ -26,14 +27,7 @@ export const CompareView = () => {
             <section className="py-5">
                 <div className="container px-4 px-lg-5 mt-5">
                     {status === 'loading' ? (
-                        <div className="d-flex align-items-center">
-                            <strong className="flex-grow-1">Loading...</strong>
-                            <div
-                                className="spinner-border ml-auto"
-                                role="status"
-                                aria-hidden="true"
-                            ></div>
-                        </div>
+                        <Loader />
                     ) : compares.length ? (
                         <table className="custom-table">
                             <thead>

@@ -21,6 +21,8 @@ export function HomeView() {
                 });
             });
         });
+
+        // TODO: reset filters here
     }, []);
 
     return (

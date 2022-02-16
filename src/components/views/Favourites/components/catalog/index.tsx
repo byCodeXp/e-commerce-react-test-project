@@ -3,9 +3,9 @@ import { CardComponent } from '../../../../layout/Card';
 import { FavouriteIcon } from '../../../../icons/favouriteIcon';
 import { customerActionsInvoker } from '../../../../../features/customer/reducer/actionsInvoker';
 import { useAppSelector } from '../../../../../store/hooks';
+import { Loader } from '../../../../layout/Loader';
 
 export function Catalog() {
-    
     const favourites = useAppSelector((state) => state.customer.favourites);
 
     const products = useAppSelector((state) => state.customer.products);
@@ -22,12 +22,7 @@ export function Catalog() {
     }, []);
 
     if (status === 'loading') {
-        return (
-            <div className="d-flex align-items-center">
-                <strong className="flex-grow-1">Loading...</strong>
-                <div className="spinner-border ml-auto" role="status" aria-hidden="true"></div>
-            </div>
-        );
+        return <Loader />;
     }
 
     return (

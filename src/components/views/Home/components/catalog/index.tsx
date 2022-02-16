@@ -11,6 +11,7 @@ import {
     selectProducts,
     selectStatus
 } from '../../../../../features/catalog/reducer/selectors';
+import { Loader } from '../../../../layout/Loader';
 
 export const Catalog = () => {
     const status = useAppSelector(selectStatus);
@@ -21,9 +22,9 @@ export const Catalog = () => {
     const filterBrand = useAppSelector(selectFilterBrand);
     const filterSurface = useAppSelector(selectFilterSurface);
 
-    const cart = useAppSelector(state => state.customer.cart);
-    const favourites = useAppSelector(state => state.customer.favourites);
-    const compares = useAppSelector(state => state.customer.compares);
+    const cart = useAppSelector((state) => state.customer.cart);
+    const favourites = useAppSelector((state) => state.customer.favourites);
+    const compares = useAppSelector((state) => state.customer.compares);
 
     const handleClickCart = (id: string) => {
         if (cart.includes(id)) {
@@ -71,12 +72,11 @@ export const Catalog = () => {
         return true;
     };
 
-    return status === 'loading' ? (
-        <div className="d-flex align-items-center">
-            <strong className="flex-grow-1">Loading...</strong>
-            <div className="spinner-border ml-auto" role="status" aria-hidden="true"></div>
-        </div>
-    ) : (
+    if (status === 'loading') {
+        return <Loader />;
+    }
+
+    return (
         <div className="row gx-3 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             {products
                 .filter((element) => filterByProperties({ ...element }))

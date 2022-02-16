@@ -3,6 +3,7 @@ import { useAppSelector } from '../../../../../store/hooks';
 import { CartIcon } from '../../../../icons/cartIcon';
 import { CardComponent } from '../../../../layout/Card';
 import { customerActionsInvoker } from '../../../../../features/customer/reducer/actionsInvoker';
+import { Loader } from '../../../../layout/Loader';
 
 export const Catalog = () => {
     const products = useAppSelector((state) => state.customer.products);
@@ -20,12 +21,7 @@ export const Catalog = () => {
     }, []);
 
     if (status === 'loading') {
-        return (
-            <div className="d-flex align-items-center">
-                <strong className="flex-grow-1">Loading...</strong>
-                <div className="spinner-border ml-auto" role="status" aria-hidden="true" />
-            </div>
-        );
+        return <Loader />;
     }
 
     return (
