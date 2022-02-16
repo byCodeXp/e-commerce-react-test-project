@@ -1,32 +1,24 @@
-import { useEffect, useState } from 'react';
-import { removeProductFromFavouritesAction } from '../../../../../features/account/reducer';
-import { selectFavouritesProducts } from '../../../../../features/account/reducer/selectors';
-import { useAppDispatch, useAppSelector } from '../../../../../store/hooks';
-import { Product } from '../../../../../features/productType';
-import { productsApi } from '../../../../../api/services/productsApi';
+import { useEffect } from 'react';
 import { CardComponent } from '../../../../layout/Card';
 import { FavouriteIcon } from '../../../../icons/favouriteIcon';
+import { customerActionsInvoker } from '../../../../../features/customer/reducer/actionsInvoker';
+import { useAppSelector } from '../../../../../store/hooks';
 
 export function Catalog() {
-    const dispatch = useAppDispatch();
+    
+    const favourites = useAppSelector((state) => state.customer.favourites);
 
-    const [status, setStatus] = useState<'idle' | 'loading'>('idle');
-    const [products, setProducts] = useState<Array<Product>>([]);
-
-    const favourites = useAppSelector(selectFavouritesProducts);
+    const products = useAppSelector((state) => state.customer.products);
+    const status = useAppSelector((state) => state.customer.status);
 
     function handleClick(id: string) {
         if (favourites.includes(id)) {
-            dispatch(removeProductFromFavouritesAction(id));
+            customerActionsInvoker.favouritesRemoveProduct(id);
         }
     }
 
     useEffect(() => {
-        setStatus('loading');
-        productsApi.getProducts().then((response) => {
-            setProducts(response.data);
-            setStatus('idle');
-        });
+        customerActionsInvoker.loadProductsAsync();
     }, []);
 
     if (status === 'loading') {

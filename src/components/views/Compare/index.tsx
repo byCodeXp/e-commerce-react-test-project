@@ -1,32 +1,23 @@
-import { useEffect, useState } from 'react';
-import { productsApi } from '../../../api/services/productsApi';
-import { removeProductFromComparesAction } from '../../../features/account/reducer';
-import { selectComparesProducts } from '../../../features/account/reducer/selectors';
-import { Product } from '../../../features/productType';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { useEffect } from 'react';
+import { useAppSelector } from '../../../store/hooks';
 import { CompareIcon } from '../../icons/compareIcon';
 import { Header } from '../../layout/Header';
+import { customerActionsInvoker } from '../../../features/customer/reducer/actionsInvoker';
 
 export const CompareView = () => {
-    const dispatch = useAppDispatch();
+    const compares = useAppSelector((state) => state.customer.compares);
 
-    const compares = useAppSelector(selectComparesProducts);
-
-    const [status, setStatus] = useState<'idle' | 'loading'>('idle');
-    const [products, setProducts] = useState<Array<Product>>([]);
+    const products = useAppSelector((state) => state.customer.products);
+    const status = useAppSelector((state) => state.customer.status);
 
     const handleClick = (id: string) => {
         if (compares.includes(id)) {
-            dispatch(removeProductFromComparesAction(id));
+            customerActionsInvoker.comparesRemoveProduct(id);
         }
     };
 
     useEffect(() => {
-        setStatus('loading');
-        productsApi.getProducts().then((response) => {
-            setProducts(response.data);
-            setStatus('idle');
-        });
+        customerActionsInvoker.loadProductsAsync();
     }, []);
 
     return (

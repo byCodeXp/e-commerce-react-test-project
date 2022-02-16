@@ -1,17 +1,9 @@
-import { useAppDispatch, useAppSelector } from '../../../../../store/hooks';
-import {
-    addProductToCartAction,
-    addProductToComparesAction,
-    addProductToFavouritesAction,
-    removeProductFromCartAction,
-    removeProductFromComparesAction,
-    removeProductFromFavouritesAction
-} from '../../../../../features/account/reducer';
-import {
-    selectCartProducts,
-    selectComparesProducts,
-    selectFavouritesProducts
-} from '../../../../../features/account/reducer/selectors';
+import { useAppSelector } from '../../../../../store/hooks';
+import { CardComponent } from '../../../../layout/Card';
+import { CartIcon } from '../../../../icons/cartIcon';
+import { CompareIcon } from '../../../../icons/compareIcon';
+import { FavouriteIcon } from '../../../../icons/favouriteIcon';
+import { customerActionsInvoker } from '../../../../../features/customer/reducer/actionsInvoker';
 import {
     selectFilterBrand,
     selectFilterColor,
@@ -19,14 +11,8 @@ import {
     selectProducts,
     selectStatus
 } from '../../../../../features/catalog/reducer/selectors';
-import { CardComponent } from '../../../../layout/Card';
-import { CartIcon } from '../../../../icons/cartIcon';
-import { CompareIcon } from '../../../../icons/compareIcon';
-import { FavouriteIcon } from '../../../../icons/favouriteIcon';
 
-export function Catalog() {
-    const dispatch = useAppDispatch();
-
+export const Catalog = () => {
     const status = useAppSelector(selectStatus);
 
     const products = useAppSelector(selectProducts);
@@ -35,33 +21,33 @@ export function Catalog() {
     const filterBrand = useAppSelector(selectFilterBrand);
     const filterSurface = useAppSelector(selectFilterSurface);
 
-    const cart = useAppSelector(selectCartProducts);
-    const favourites = useAppSelector(selectFavouritesProducts);
-    const compares = useAppSelector(selectComparesProducts);
+    const cart = useAppSelector(state => state.customer.cart);
+    const favourites = useAppSelector(state => state.customer.favourites);
+    const compares = useAppSelector(state => state.customer.compares);
 
-    function handleClickCart(id: string) {
+    const handleClickCart = (id: string) => {
         if (cart.includes(id)) {
-            dispatch(removeProductFromCartAction(id));
+            customerActionsInvoker.cartRemoveProduct(id);
         } else {
-            dispatch(addProductToCartAction(id));
+            customerActionsInvoker.cartAddProduct(id);
         }
-    }
+    };
 
-    function handleClickFavourite(id: string) {
+    const handleClickFavourite = (id: string) => {
         if (favourites.includes(id)) {
-            dispatch(removeProductFromFavouritesAction(id));
+            customerActionsInvoker.favouritesRemoveProduct(id);
         } else {
-            dispatch(addProductToFavouritesAction(id));
+            customerActionsInvoker.favouritesAddProduct(id);
         }
-    }
+    };
 
-    function handleClickCompare(id: string) {
+    const handleClickCompare = (id: string) => {
         if (compares.includes(id)) {
-            dispatch(removeProductFromComparesAction(id));
+            customerActionsInvoker.comparesRemoveProduct(id);
         } else {
-            dispatch(addProductToComparesAction(id));
+            customerActionsInvoker.comparesAddProduct(id);
         }
-    }
+    };
 
     interface FilterProps {
         color: string;
@@ -137,4 +123,4 @@ export function Catalog() {
                 ))}
         </div>
     );
-}
+};
