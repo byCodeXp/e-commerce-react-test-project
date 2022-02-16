@@ -1,3 +1,4 @@
+import { CartIcon } from '../../../icons/cartIcon';
 import { FavouriteIcon } from '../../../icons/favouriteIcon';
 
 interface CatalogCardProps {
@@ -32,7 +33,7 @@ export function CatalogCard({
                         onClick={onClick}
                         className="btn btn-outline-danger w-100"
                     >
-                        <FavouriteIcon />
+                        <CartIcon />
                     </div>
                 </div>
             </div>

@@ -1,10 +1,10 @@
-import { removeProductFromFavouritesAction } from '../../../../features/account/reducer';
-import { selectFavouritesProducts } from '../../../../features/account/reducer/selectors';
+import { useState, useEffect } from 'react';
+import { productsApi } from '../../../../api/services/productsApi';
+import { removeProductFromCartAction } from '../../../../features/account/reducer';
+import { selectCartProducts } from '../../../../features/account/reducer/selectors';
+import { Product } from '../../../../features/productType';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { CatalogCard } from '../card';
-import { useEffect, useState } from 'react';
-import { Product } from '../../../../features/productType';
-import { productsApi } from '../../../../api/services/productsApi';
 
 export function Catalog() {
     const dispatch = useAppDispatch();
@@ -12,11 +12,11 @@ export function Catalog() {
     const [status, setStatus] = useState<'idle' | 'loading'>('idle');
     const [products, setProducts] = useState<Array<Product>>([]);
 
-    const favourites = useAppSelector(selectFavouritesProducts);
+    const cart = useAppSelector(selectCartProducts);
 
     function handleClick(id: string) {
-        if (favourites.includes(id)) {
-            dispatch(removeProductFromFavouritesAction(id));
+        if (cart.includes(id)) {
+            dispatch(removeProductFromCartAction(id));
         }
     }
 
@@ -29,7 +29,9 @@ export function Catalog() {
     }, []);
 
     function filter(id: string) {
-        if (favourites.includes(id)) return true;
+        if (cart.includes(id)) {
+            return true;
+        }
 
         return false;
     }
