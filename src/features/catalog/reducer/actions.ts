@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { brandsApi } from '../../../api/services/brandsApi';
 import { colorsApi } from '../../../api/services/colorsApi';
 import { productsApi } from '../../../api/services/productsApi';
+import { surfacesApi } from '../../../api/services/surfacesApi';
 import { Product } from '../productType';
 
 export const getProductsAsyncAction = createAsyncThunk<Product[]>(
@@ -37,6 +38,20 @@ export const getBrandsAsyncAction = createAsyncThunk<string[]>(
     async (_, thunkApi) => {
         try {
             const response = await brandsApi.getBrands();
+            return response.data;
+        } catch (error) {
+            thunkApi.rejectWithValue(
+                'Something went wrong, please try again !'
+            );
+        }
+    }
+);
+
+export const getSurfacesAsyncAction = createAsyncThunk<string[]>(
+    'GET_SURFACES_ACTION',
+    async (_, thunkApi) => {
+        try {
+            const response = await surfacesApi.getSurfaces();
             return response.data;
         } catch (error) {
             thunkApi.rejectWithValue(

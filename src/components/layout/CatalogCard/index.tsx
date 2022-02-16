@@ -20,7 +20,7 @@ export function CatalogCard({ picture, title, price }: CatalogCardProps) {
                 />
                 <div className="card-body p-4">
                     <div className="text-center">
-                        <h5 className="fw-bolder">{title}</h5>${price}
+                        <h5>{title}</h5>${price}
                     </div>
                 </div>
                 <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
