@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { CardComponent } from '../../../../layout/Card';
 import { FavouriteIcon } from '../../../../icons/favouriteIcon';
-import { customerActionsInvoker } from '../../../../../features/customer/reducer/actionsInvoker';
 import { useAppSelector } from '../../../../../store/hooks';
 import { Loader } from '../../../../layout/Loader';
+import { customerActionsInvoker } from '../../../../../reducers/customer/actionsInvoker';
 
 export function Catalog() {
     const favourites = useAppSelector((state) => state.customer.favourites);

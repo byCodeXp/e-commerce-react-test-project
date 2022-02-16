@@ -1,5 +1,5 @@
-import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit';
-import { Product } from '../../productType';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Product } from '../productType';
 import {
     getBrandsAsyncAction,
     getColorsAsyncAction,
@@ -9,6 +9,7 @@ import {
 
 interface State {
     products: Array<Product>;
+    
     colors: Array<string>;
     brands: Array<string>;
     surfaces: Array<string>;
@@ -21,8 +22,8 @@ interface State {
 }
 
 const initialState: State = {
-
     products: [],
+
     colors: [],
     brands: [],
     surfaces: [],
@@ -38,7 +39,7 @@ const catalogSlice = createSlice({
     name: 'CATALOG_SLICE',
     initialState,
     reducers: {
-        setFilterColor(state, { payload }: PayloadAction<string>) {
+        setFilterColorAction(state, { payload }: PayloadAction<string>) {
             const index = state.colors.findIndex((i) => i === payload);
 
             if (index === -1) {
@@ -47,7 +48,7 @@ const catalogSlice = createSlice({
                 state.filterColor = state.colors[index];
             }
         },
-        setFilterBrand(state, { payload }: PayloadAction<string>) {
+        setFilterBrandAction(state, { payload }: PayloadAction<string>) {
             const index = state.brands.findIndex((i) => i === payload);
 
             if (index === -1) {
@@ -56,7 +57,7 @@ const catalogSlice = createSlice({
                 state.filterBrand = state.brands[index];
             }
         },
-        setFilterSurface(state, { payload }: PayloadAction<string>) {
+        setFilterSurfaceAction(state, { payload }: PayloadAction<string>) {
             const index = state.surfaces.findIndex((i) => i === payload);
 
             if (index === -1) {
@@ -127,4 +128,4 @@ const catalogSlice = createSlice({
 });
 
 export const catalogReducer = catalogSlice.reducer;
-export const { setFilterColor, setFilterBrand, setFilterSurface } = catalogSlice.actions;
+export const { setFilterColorAction, setFilterBrandAction, setFilterSurfaceAction } = catalogSlice.actions;

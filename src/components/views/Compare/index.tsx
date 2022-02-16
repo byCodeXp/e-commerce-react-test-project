@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
+import { customerActionsInvoker } from '../../../reducers/customer/actionsInvoker';
 import { useAppSelector } from '../../../store/hooks';
 import { CompareIcon } from '../../icons/compareIcon';
 import { Header } from '../../layout/Header';
-import { customerActionsInvoker } from '../../../features/customer/reducer/actionsInvoker';
 import { Loader } from '../../layout/Loader';
 
 export const CompareView = () => {

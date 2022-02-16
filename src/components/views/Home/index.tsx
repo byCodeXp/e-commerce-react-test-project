@@ -1,28 +1,23 @@
 import { useEffect } from 'react';
-import { useAppDispatch } from '../../../store/hooks';
+import { catalogActionsInoker } from '../../../reducers/catalog/actionsInvoker';
 import { Header } from '../../layout/Header';
 import { Catalog } from './components/catalog';
 import { Filter } from './components/filter';
-import {
-    getBrandsAsyncAction,
-    getColorsAsyncAction,
-    getProductsAsyncAction,
-    getSurfacesAsyncAction
-} from '../../../features/catalog/reducer/actions';
 
 export function HomeView() {
-    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(getProductsAsyncAction()).then(() => {
-            dispatch(getColorsAsyncAction()).then(() => {
-                dispatch(getBrandsAsyncAction()).then(() => {
-                    dispatch(getSurfacesAsyncAction());
-                });
-            });
-        });
 
-        // TODO: reset filters here
+        (async () => {
+            await catalogActionsInoker.getProductsAsync();
+            await catalogActionsInoker.getBrandsAsync();
+            await catalogActionsInoker.getColorsAsync();
+            await catalogActionsInoker.getSurfacesAsync();
+
+            await catalogActionsInoker.setFilterSurface('');
+            await catalogActionsInoker.setFilterColor('');
+            await catalogActionsInoker.setFilterBrand('');
+        })()
     }, []);
 
     return (

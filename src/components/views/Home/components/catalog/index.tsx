@@ -3,15 +3,9 @@ import { CardComponent } from '../../../../layout/Card';
 import { CartIcon } from '../../../../icons/cartIcon';
 import { CompareIcon } from '../../../../icons/compareIcon';
 import { FavouriteIcon } from '../../../../icons/favouriteIcon';
-import { customerActionsInvoker } from '../../../../../features/customer/reducer/actionsInvoker';
-import {
-    selectFilterBrand,
-    selectFilterColor,
-    selectFilterSurface,
-    selectProducts,
-    selectStatus
-} from '../../../../../features/catalog/reducer/selectors';
 import { Loader } from '../../../../layout/Loader';
+import { selectStatus, selectProducts, selectFilterColor, selectFilterBrand, selectFilterSurface } from '../../../../../reducers/catalog/selectors';
+import { customerActionsInvoker } from '../../../../../reducers/customer/actionsInvoker';
 
 export const Catalog = () => {
     const status = useAppSelector(selectStatus);

@@ -1,5 +1,5 @@
 import { bindActionCreators } from 'redux';
-import { AppDispatch, store } from '../../../store';
+import { AppDispatch, store } from '../../store';
 import { loadProductsAsyncAction } from './actions';
 import {
     cartAddProductAction,

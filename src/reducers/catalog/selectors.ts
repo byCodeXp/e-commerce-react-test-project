@@ -1,33 +1,33 @@
-import { RootState } from "../../../store";
+import { RootState } from '../../store';
 
 export function selectProducts(state: RootState) {
-   return state.catalog.products;
+    return state.catalog.products;
 }
 
 export function selectColors(state: RootState) {
-   return state.catalog.colors;
+    return state.catalog.colors;
 }
 
 export function selectBrands(state: RootState) {
-   return state.catalog.brands;
+    return state.catalog.brands;
 }
 
 export function selectSurfaces(state: RootState) {
-   return state.catalog.surfaces;
+    return state.catalog.surfaces;
 }
 
 export function selectFilterBrand(state: RootState) {
-   return state.catalog.filterBrand;
+    return state.catalog.filterBrand;
 }
 
 export function selectFilterColor(state: RootState) {
-   return state.catalog.filterColor;
+    return state.catalog.filterColor;
 }
 
 export function selectFilterSurface(state: RootState) {
-   return state.catalog.filterSurface;
+    return state.catalog.filterSurface;
 }
 
 export function selectStatus(state: RootState) {
-   return state.catalog.status;
+    return state.catalog.status;
 }

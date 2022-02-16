@@ -6,7 +6,7 @@ import { CartView } from './components/views/Cart';
 import { CompareView } from './components/views/Compare';
 import { FavouritesView } from './components/views/Favourites';
 import { HomeView } from './components/views/Home';
-import { customerActionsInvoker } from './features/customer/reducer/actionsInvoker';
+import { customerActionsInvoker } from './reducers/customer/actionsInvoker';
 import { routerRoutes } from './router-routes';
 
 export const App = () => {

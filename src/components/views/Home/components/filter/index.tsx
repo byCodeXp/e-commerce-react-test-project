@@ -1,15 +1,7 @@
+import { setFilterColorAction, setFilterBrandAction, setFilterSurfaceAction } from '../../../../../reducers/catalog';
+import { selectColors, selectBrands, selectSurfaces } from '../../../../../reducers/catalog/selectors';
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks';
 import { Select } from '../../../../base/select';
-import {
-    setFilterBrand,
-    setFilterColor,
-    setFilterSurface
-} from '../../../../../features/catalog/reducer';
-import {
-    selectColors,
-    selectBrands,
-    selectSurfaces
-} from '../../../../../features/catalog/reducer/selectors';
 
 export function Filter() {
     const dispatch = useAppDispatch();
@@ -19,15 +11,15 @@ export function Filter() {
     const surfaces = useAppSelector(selectSurfaces);
 
     const handleSelectColor = (color: string) => {
-        dispatch(setFilterColor(color));
+        dispatch(setFilterColorAction(color));
     };
 
     const handleSelectBrand = (brand: string) => {
-        dispatch(setFilterBrand(brand));
+        dispatch(setFilterBrandAction(brand));
     };
 
     const handleSelectSurface = (surface: string) => {
-        dispatch(setFilterSurface(surface));
+        dispatch(setFilterSurfaceAction(surface));
     };
 
     return (

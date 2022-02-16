@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useAppSelector } from '../../../../../store/hooks';
 import { CartIcon } from '../../../../icons/cartIcon';
 import { CardComponent } from '../../../../layout/Card';
-import { customerActionsInvoker } from '../../../../../features/customer/reducer/actionsInvoker';
+import { customerActionsInvoker } from '../../../../../reducers/customer/actionsInvoker';
 import { Loader } from '../../../../layout/Loader';
 
 export const Catalog = () => {
