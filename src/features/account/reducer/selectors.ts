@@ -1,4 +1,4 @@
-import { RootState } from "../../../app/store";
+import { RootState } from "../../../store";
 
 export function selectCartProducts(state: RootState) {
    return state.account.cart;

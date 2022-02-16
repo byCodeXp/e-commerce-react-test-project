@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from '../../../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../../../store/hooks';
 import {
     addProductToCartAction,
     addProductToComparesAction,
@@ -19,7 +19,7 @@ import {
     selectProducts,
     selectStatus
 } from '../../../../../features/catalog/reducer/selectors';
-import { CatalogCard } from '../../../../layout/CatalogCard';
+import { CatalogCard } from '../card';
 
 export function Catalog() {
     const dispatch = useAppDispatch();
@@ -60,24 +60,27 @@ export function Catalog() {
         }
     }
 
-    const filter = ({
-        color,
-        brand,
-        surface
-    }: {
+    interface FilterProps {
         color: string;
         brand: string;
         surface: string;
-    }) => {
-        if (filterBrand !== '') if (filterBrand !== brand) return false;
+    }
 
-        if (filterColor !== '') if (filterColor !== color) return false;
+    function filter({ color, brand, surface }: FilterProps) {
+        if (filterBrand !== '')
+            if (filterBrand !== brand)
+                return false;
+
+        if (filterColor !== '')
+            if (filterColor !== color)
+                return false;
 
         if (filterSurface !== '')
-            if (!surface.includes(filterSurface)) return false;
+            if (!surface.includes(filterSurface))
+                return false;
 
         return true;
-    };
+    }
 
     return status === 'loading' ? (
         <div className="d-flex align-items-center">
@@ -93,22 +96,19 @@ export function Catalog() {
             {products.map(
                 (product, index) =>
                     filter({ ...product }) && (
-                        <CatalogCard
-                            key={index}
-                            title={product.name}
-                            picture={product.picture}
-                            price={product.price}
-                            inCart={cart.includes(product.id)}
-                            inFavourites={favourites.includes(product.id)}
-                            inCompares={compares.includes(product.id)}
-                            onCartClick={() => handleClickCart(product.id)}
-                            onFavouriteClick={() =>
-                                handleClickFavourite(product.id)
-                            }
-                            onCompareClick={() =>
-                                handleClickCompare(product.id)
-                            }
-                        />
+                        <div className="col mb-5" key={index}>
+                            <CatalogCard
+                                title={product.name}
+                                picture={product.picture}
+                                price={product.price}
+                                inCart={cart.includes(product.id)}
+                                inFavourites={favourites.includes(product.id)}
+                                inCompares={compares.includes(product.id)}
+                                onCartClick={() => handleClickCart(product.id)}
+                                onFavouriteClick={() => handleClickFavourite(product.id)}
+                                onCompareClick={() => handleClickCompare(product.id)}
+                            />
+                        </div>
                     )
             )}
         </div>

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch } from '../../../store/hooks';
 import { Header } from '../../layout/Header';
 import { Catalog } from './components/catalog';
 import { Filter } from './components/filter';

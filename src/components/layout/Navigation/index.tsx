@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../../app/hooks';
+import { useAppSelector } from '../../../store/hooks';
 import { selectCartProducts } from '../../../features/account/reducer/selectors';
 import { routerRoutes } from '../../../router-routes';
 
