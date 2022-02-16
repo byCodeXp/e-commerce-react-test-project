@@ -22,6 +22,7 @@
    ],
    "products": [
       {
+         "id": "VetH-ITiOZfrpAd6p8mv0",
          "name": "iRobot Roomba i3",
          "picture": "https://content.rozetka.com.ua/goods/images/base_action/178629401.png",
          "color": "Gray",
@@ -31,6 +32,7 @@
          "price": 349
       },
       {
+         "id": "E3lgi6K1xTsaLS1m9oXzs",
          "name": "iRobot Roomba i3+",
          "picture": "https://store.irobot.com/on/demandware.static/-/Sites-master-catalog-irobot/default/dwe387d708/images/large/i3%20_m6_silver_bundle_Photo_studio_1000x1000.png",
          "color": "Gray",
@@ -40,6 +42,7 @@
          "price": 549
       },
       {
+         "id": "mG5MZMcWMwBFp72oOBAAA",
          "name": "Roborock S4 Max",
          "picture": "https://cdn.shopify.com/s/files/1/0082/3666/2902/t/65/assets/heros-s4max-roborock-s4-max.png?v=16525840357880754519",
          "color": "Black",
@@ -49,6 +52,7 @@
          "price": 310
       },
       {
+         "id": "9xgaPKr7gaYGxnZEmzi4e",
          "name": "Eufy RoboVac 11S",
          "picture": "https://d2211byn0pk9fi.cloudfront.net/spree/products/72959/product/T2108121_320.png?1534901695",
          "color": "White",
@@ -58,6 +62,7 @@
          "price": 160
       },
       {
+         "id": "gvxzciK9hAZdZOOP4pYTD",
          "name": "iRobot Roomba 694",
          "picture": "https://www.irobot.com/-/media/images/features/product-lineup/foreground-images/product-data-images/i7-_charcoal_cleanbase_photo_studio_leftstanding_hero_phone_400x400.ashx",
          "color": "Black",
@@ -67,6 +72,7 @@
          "price": 275
       },
       {
+         "id": "AJ7LdT-MkWGU4NWLTwWol",
          "name": "iLife A9 Robot Vacuum Cleaner",
          "picture": "https://comparisonfind.com/wp-content/uploads/2021/08/ILIFE-A10s.png",
          "color": "Black",
@@ -76,6 +82,7 @@
          "price": 219
       },
       {
+         "id": "hLElOBX0FVax2I8c0OT2e",
          "name": "Proscenic M7 Pro",
          "picture": "https://camo.githubusercontent.com/b2e226716083aa0bdd6a82b76f7057bb3dcafbd704efedb44b9c17d4105d180f/68747470733a2f2f732e616c6963646e2e636f6d2f40736330312f6b662f4835353432313330383233356234353536386335323366323638343733313931364a2e706e67",
          "color": "Black",
@@ -85,6 +92,7 @@
          "price": 399
       },
       {
+         "id": "Su59FKscPXEjNeHbiPHl_",
          "name": "Wyze Robot Vacuum",
          "picture": "https://dpf1vvfzejmqw.cloudfront.net/wyze_robot_vacuum/images/x1/img_hero.png",
          "color": "Black",

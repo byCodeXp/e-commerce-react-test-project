@@ -1,4 +1,17 @@
-import { useAppSelector } from '../../../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../../../app/hooks';
+import {
+    addProductToCartAction,
+    addProductToComparesAction,
+    addProductToFavouritesAction,
+    removeProductFromCartAction,
+    removeProductFromComparesAction,
+    removeProductFromFavouritesAction
+} from '../../../../../features/account/reducer';
+import {
+    selectCartProducts,
+    selectComparesProducts,
+    selectFavouritesProducts
+} from '../../../../../features/account/reducer/selectors';
 import {
     selectFilterBrand,
     selectFilterColor,
@@ -9,6 +22,8 @@ import {
 import { CatalogCard } from '../../../../layout/CatalogCard';
 
 export function Catalog() {
+    const dispatch = useAppDispatch();
+
     const status = useAppSelector(selectStatus);
 
     const products = useAppSelector(selectProducts);
@@ -16,6 +31,34 @@ export function Catalog() {
     const filterColor = useAppSelector(selectFilterColor);
     const filterBrand = useAppSelector(selectFilterBrand);
     const filterSurface = useAppSelector(selectFilterSurface);
+
+    const cart = useAppSelector(selectCartProducts);
+    const favourites = useAppSelector(selectFavouritesProducts);
+    const compares = useAppSelector(selectComparesProducts);
+
+    function handleClickCart(id: string) {
+        if (cart.includes(id)) {
+            dispatch(removeProductFromCartAction(id));
+        } else {
+            dispatch(addProductToCartAction(id));
+        }
+    }
+
+    function handleClickFavourite(id: string) {
+        if (favourites.includes(id)) {
+            dispatch(removeProductFromFavouritesAction(id));
+        } else {
+            dispatch(addProductToFavouritesAction(id));
+        }
+    }
+
+    function handleClickCompare(id: string) {
+        if (compares.includes(id)) {
+            dispatch(removeProductFromComparesAction(id));
+        } else {
+            dispatch(addProductToComparesAction(id));
+        }
+    }
 
     const filter = ({
         color,
@@ -55,6 +98,16 @@ export function Catalog() {
                             title={product.name}
                             picture={product.picture}
                             price={product.price}
+                            inCart={cart.includes(product.id)}
+                            inFavourites={favourites.includes(product.id)}
+                            inCompares={compares.includes(product.id)}
+                            onCartClick={() => handleClickCart(product.id)}
+                            onFavouriteClick={() =>
+                                handleClickFavourite(product.id)
+                            }
+                            onCompareClick={() =>
+                                handleClickCompare(product.id)
+                            }
                         />
                     )
             )}

@@ -6,9 +6,25 @@ interface CatalogCardProps {
     picture: string;
     title: string;
     price: number;
+    inCart: boolean;
+    inFavourites: boolean;
+    inCompares: boolean;
+    onCartClick: () => void;
+    onFavouriteClick: () => void;
+    onCompareClick: () => void;
 }
 
-export function CatalogCard({ picture, title, price }: CatalogCardProps) {
+export function CatalogCard({
+    picture,
+    title,
+    price,
+    inCart,
+    inFavourites,
+    inCompares,
+    onCartClick,
+    onFavouriteClick,
+    onCompareClick
+}: CatalogCardProps) {
     return (
         <div className="col mb-5">
             <div className="card h-100">
@@ -25,13 +41,28 @@ export function CatalogCard({ picture, title, price }: CatalogCardProps) {
                 </div>
                 <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
                     <div className="d-flex text-center justify-content-between gap-2">
-                        <div className="btn btn-outline-dark w-100">
+                        <div
+                            onClick={onCartClick}
+                            className={`btn ${
+                                inCart ? 'btn-dark' : 'btn-outline-dark'
+                            } w-100`}
+                        >
                             <CartIcon />
                         </div>
-                        <div className="btn btn-outline-dark w-100">
+                        <div
+                            onClick={onFavouriteClick}
+                            className={`btn ${
+                                inFavourites ? 'btn-dark' : 'btn-outline-dark'
+                            } w-100`}
+                        >
                             <FavouriteIcon />
                         </div>
-                        <div className="btn btn-outline-dark w-100">
+                        <div
+                            onClick={onCompareClick}
+                            className={`btn ${
+                                inCompares ? 'btn-dark' : 'btn-outline-dark'
+                            } w-100`}
+                        >
                             <CompareIcon />
                         </div>
                     </div>

@@ -3,7 +3,7 @@ import { brandsApi } from '../../../api/services/brandsApi';
 import { colorsApi } from '../../../api/services/colorsApi';
 import { productsApi } from '../../../api/services/productsApi';
 import { surfacesApi } from '../../../api/services/surfacesApi';
-import { Product } from '../productType';
+import { Product } from '../../productType';
 
 export const getProductsAsyncAction = createAsyncThunk<Product[]>(
     'GET_PRODUCTS_ACTION',

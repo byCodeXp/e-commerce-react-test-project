@@ -1,7 +1,14 @@
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../../app/hooks';
+import { selectCartProducts } from '../../../features/account/reducer/selectors';
 import { routerRoutes } from '../../../router-routes';
 
 export function Navigation() {
+
+    const cart = useAppSelector(selectCartProducts);
+
+    const countProductsInCart = cart.length;
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container px-4 px-lg-5">
@@ -46,7 +53,7 @@ export function Navigation() {
                         <i className="bi-cart-fill me-1"></i>
                         Cart
                         <span className="badge bg-dark text-white ms-1 rounded-pill">
-                            0
+                            {countProductsInCart}
                         </span>
                     </Link>
                 </div>

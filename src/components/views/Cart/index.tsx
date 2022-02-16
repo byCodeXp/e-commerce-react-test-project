@@ -16,6 +16,12 @@ export function CartView() {
                                     title="Product"
                                     picture="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
                                     price={40}
+                                    inCart={false}
+                                    inFavourites={false}
+                                    inCompares={false}
+                                    onCartClick={() => {}}
+                                    onFavouriteClick={() => {}}
+                                    onCompareClick={() => {}}
                                 />
                             ))}
                     </div>
