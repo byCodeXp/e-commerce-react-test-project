@@ -1,5 +1,4 @@
 import { CartIcon } from '../../../icons/cartIcon';
-import { FavouriteIcon } from '../../../icons/favouriteIcon';
 
 interface CatalogCardProps {
     picture: string;
