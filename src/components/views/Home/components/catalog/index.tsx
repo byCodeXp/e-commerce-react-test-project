@@ -4,7 +4,13 @@ import { CartIcon } from '../../../../icons/cartIcon';
 import { CompareIcon } from '../../../../icons/compareIcon';
 import { FavouriteIcon } from '../../../../icons/favouriteIcon';
 import { Loader } from '../../../../layout/Loader';
-import { selectStatus, selectProducts, selectFilterColor, selectFilterBrand, selectFilterSurface } from '../../../../../reducers/catalog/selectors';
+import {
+    selectStatus,
+    selectProducts,
+    selectFilterColor,
+    selectFilterBrand,
+    selectFilterSurface
+} from '../../../../../reducers/catalog/selectors';
 import { customerActionsInvoker } from '../../../../../reducers/customer/actionsInvoker';
 
 export const Catalog = () => {
@@ -80,38 +86,40 @@ export const Catalog = () => {
                             title={product.name}
                             picture={product.picture}
                             price={product.price}
-                            extra={[
-                                <div
-                                    onClick={() => handleClickCart(product.id)}
-                                    className={`btn ${
-                                        cart.includes(product.id)
-                                            ? 'btn-dark'
-                                            : 'btn-outline-dark'
-                                    } w-100`}
-                                >
-                                    <CartIcon />
-                                </div>,
-                                <div
-                                    onClick={() => handleClickFavourite(product.id)}
-                                    className={`btn ${
-                                        favourites.includes(product.id)
-                                            ? 'btn-dark'
-                                            : 'btn-outline-dark'
-                                    } w-100`}
-                                >
-                                    <FavouriteIcon />
-                                </div>,
-                                <div
-                                    onClick={() => handleClickCompare(product.id)}
-                                    className={`btn ${
-                                        compares.includes(product.id)
-                                            ? 'btn-dark'
-                                            : 'btn-outline-dark'
-                                    } w-100`}
-                                >
-                                    <CompareIcon />
-                                </div>
-                            ]}
+                            extra={
+                                <>
+                                    <div
+                                        onClick={() => handleClickCart(product.id)}
+                                        className={`btn ${
+                                            cart.includes(product.id)
+                                                ? 'btn-dark'
+                                                : 'btn-outline-dark'
+                                        } w-100`}
+                                    >
+                                        <CartIcon />
+                                    </div>
+                                    <div
+                                        onClick={() => handleClickFavourite(product.id)}
+                                        className={`btn ${
+                                            favourites.includes(product.id)
+                                                ? 'btn-dark'
+                                                : 'btn-outline-dark'
+                                        } w-100`}
+                                    >
+                                        <FavouriteIcon />
+                                    </div>
+                                    <div
+                                        onClick={() => handleClickCompare(product.id)}
+                                        className={`btn ${
+                                            compares.includes(product.id)
+                                                ? 'btn-dark'
+                                                : 'btn-outline-dark'
+                                        } w-100`}
+                                    >
+                                        <CompareIcon />
+                                    </div>
+                                </>
+                            }
                         />
                     </div>
                 ))}

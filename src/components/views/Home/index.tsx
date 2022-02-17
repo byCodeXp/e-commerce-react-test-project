@@ -8,16 +8,19 @@ export function HomeView() {
 
     useEffect(() => {
 
-        (async () => {
-            await catalogActionsInoker.getProductsAsync();
-            await catalogActionsInoker.getBrandsAsync();
-            await catalogActionsInoker.getColorsAsync();
-            await catalogActionsInoker.getSurfacesAsync();
+        // Load products
+        catalogActionsInoker.getProductsAsync();
+        // Load brands
+        catalogActionsInoker.getBrandsAsync();
+        // Load colors
+        catalogActionsInoker.getColorsAsync();
+        // Load surfaces
+        catalogActionsInoker.getSurfacesAsync();
 
-            await catalogActionsInoker.setFilterSurface('');
-            await catalogActionsInoker.setFilterColor('');
-            await catalogActionsInoker.setFilterBrand('');
-        })()
+        // Reset filters
+        catalogActionsInoker.setFilterSurface('');
+        catalogActionsInoker.setFilterColor('');
+        catalogActionsInoker.setFilterBrand('');
     }, []);
 
     return (
